@@ -61,7 +61,7 @@ const cardSchema = mongoose.Schema({
     stateColor: {
       type: String,
       trim: true,
-      enum: ["#ef9a9a", "#fff59d", "#a5d6a7"],
+      enum: ["#ef9a9a", "#fff59d", "#a5d6a7", ""],
     },
     checked: { type: Boolean },
   },
