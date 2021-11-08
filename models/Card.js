@@ -56,7 +56,7 @@ const cardSchema = mongoose.Schema({
     state: {
       type: String,
       trim: true,
-      enum: ["complete", "due soon", "overdue"],
+      enum: ["complete", "due soon", "overdue", ""],
     },
     stateColor: {
       type: String,
