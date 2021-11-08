@@ -71,16 +71,13 @@ const AddDueDate = ({ card }) => {
       false
     );
 
-    await axios.patch(
-      `${process.env.NEXT_PUBLIC_Base_URL}/api/cards?boardID=${card.board}`,
-      {
-        cardID: card._id,
-        date,
-        dueDateChecked: false,
-        state,
-        color: stateColor,
-      }
-    );
+    await axios.patch(`/api/cards?boardID=${card.board}`, {
+      cardID: card._id,
+      date,
+      dueDateChecked: false,
+      state,
+      color: stateColor,
+    });
     mutate(`/api/cards?boardID=${card.board}`);
   };
 
