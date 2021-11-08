@@ -24,7 +24,7 @@ function AddBoard() {
           board: Yup.string().trim().required().max(50).label("Board Title"),
         })}
         onSubmit={async (values) => {
-          await axios.post(`/boards`, { title: values.board });
+          await axios.post(`/api/boards`, { title: values.board });
           values.board = "";
           mutate("/api/boards");
         }}
