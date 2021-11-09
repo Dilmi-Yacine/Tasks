@@ -23,7 +23,7 @@ const Boards = () => {
 
   if (!loadingUser) {
     if (user.name === null) {
-      axios.patch(`/api/users/${user._id}`, {
+      axios.patch(`/api/user`, {
         name: user.email.split("@")[0],
       });
     }

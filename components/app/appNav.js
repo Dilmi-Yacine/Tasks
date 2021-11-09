@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { blueGrey, grey, indigo } from "@mui/material/colors";
+import { grey, indigo } from "@mui/material/colors";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import NavMenu from "./navMenu";
