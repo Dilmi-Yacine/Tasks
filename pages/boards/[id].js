@@ -1,7 +1,6 @@
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { getSession } from "next-auth/client";
 import { SWRConfig, useSWRConfig } from "swr";
-import { useRouter } from "next/router";
 import dbConnect from "../../lib/dbConnect";
 import Board from "../../models/Board";
 import List from "../../models/List";
@@ -37,10 +36,8 @@ const WorkFlow = styled("div")(({ theme }) => ({
   right: 0,
 }));
 
-const Details = ({ fallback }) => {
+const Details = ({ boardID, fallback }) => {
   const { mutate } = useSWRConfig();
-  const router = useRouter();
-  const { id: boardID } = router.query;
 
   const { board, loadingBoard } = useBoard(`/api/boards/${boardID}`);
   const { lists, loadingLists } = useLists(`/api/lists?boardID=${boardID}`);
@@ -253,6 +250,7 @@ export async function getServerSideProps(context) {
 
     return {
       props: {
+        boardID: JSON.parse(JSON.stringify(params.id)),
         fallback: {
           [`/api/boards/${params.id}`]: JSON.parse(JSON.stringify(board)),
           [`/api/lists?boardID=${board._id}`]: JSON.parse(
