@@ -65,7 +65,7 @@ const cardSchema = mongoose.Schema({
     },
     checked: { type: Boolean },
   },
-  members: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }] },
+  members: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
 export default mongoose.models.Card || mongoose.model("Card", cardSchema);
