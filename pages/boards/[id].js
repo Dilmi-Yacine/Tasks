@@ -182,7 +182,6 @@ const Details = ({ boardID, fallback }) => {
                           <ListComp
                             key={lists[listID]._id}
                             list={lists[listID]}
-                            cards={cards}
                             index={index}
                           />
                         );

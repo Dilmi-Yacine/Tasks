@@ -1,3 +1,4 @@
+import useCards from "../../lib/useCards";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/system/Box";
@@ -17,7 +18,9 @@ const ListContainer = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
-const List = ({ list, cards, index }) => {
+const List = ({ list, index }) => {
+  const { cards } = useCards(`/api/cards?boardID=${list.board}`);
+
   return (
     <Draggable draggableId={list._id} index={index}>
       {(provided) => (
@@ -37,14 +40,17 @@ const List = ({ list, cards, index }) => {
                   sx={{ flexGrow: 1, pt: 1 }}
                 >
                   {Object.keys(cards).length > 0 &&
-                    list.taskIDs.map((taskID, index) => (
-                      <Card
-                        key={taskID}
-                        list={list}
-                        card={cards[taskID]}
-                        index={index}
-                      />
-                    ))}
+                    list.taskIDs.map(
+                      (taskID, index) =>
+                        typeof cards[taskID] !== "undefined" && (
+                          <Card
+                            key={taskID}
+                            list={list}
+                            card={cards[taskID]}
+                            index={index}
+                          />
+                        )
+                    )}
                   {provided.placeholder}
                 </Box>
               )}
