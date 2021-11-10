@@ -177,14 +177,15 @@ const Details = ({ boardID, fallback }) => {
                     ref={provided.innerRef}
                   >
                     {board.listsOrder.map((listID, index) => {
-                      return (
-                        <ListComp
-                          key={lists[listID]._id}
-                          list={lists[listID]}
-                          cards={cards}
-                          index={index}
-                        />
-                      );
+                      if (typeof lists[listID] !== "undefined")
+                        return (
+                          <ListComp
+                            key={lists[listID]._id}
+                            list={lists[listID]}
+                            cards={cards}
+                            index={index}
+                          />
+                        );
                     })}
                     {provided.placeholder}
                   </Stack>
