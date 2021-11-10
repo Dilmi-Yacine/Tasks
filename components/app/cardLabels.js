@@ -9,18 +9,21 @@ const CardLabels = ({ card }) => {
 
   return (
     <Stack direction="row" alignItems="center" gap={1}>
-      {cards[card._id].labels.map((labelID) => (
-        <Paper
-          elevation={0}
-          key={labelID}
-          sx={{
-            width: "40px",
-            height: "5px",
-            bgcolor: labels[labelID].color,
-            mb: 0.5,
-          }}
-        ></Paper>
-      ))}
+      {cards[card._id].labels.map(
+        (labelID) =>
+          typeof labels[labelID] !== "undefined" && (
+            <Paper
+              elevation={0}
+              key={labelID}
+              sx={{
+                width: "40px",
+                height: "5px",
+                bgcolor: labels[labelID].color,
+                mb: 0.5,
+              }}
+            ></Paper>
+          )
+      )}
     </Stack>
   );
 };

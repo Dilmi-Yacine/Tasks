@@ -46,38 +46,41 @@ const DisplayLabels = ({ card }) => {
   return (
     cards[card._id].labels.length > 0 && (
       <Stack direction="row" gap={0.5} sx={{ flexFlow: "row wrap" }}>
-        {cards[card._id].labels.map((labelID) => (
-          <Box key={labelID}>
-            <Chip
-              sx={{
-                bgcolor: labels[labelID].color,
-                color: "white",
-                fontWeight: "bold",
-                opacity: 1,
-                transition: "0.3s",
-                ":hover": {
-                  bgcolor: labels[labelID].color,
-                  opacity: 0.8,
-                },
-              }}
-              label={labels[labelID].label}
-              size="small"
-              onClick={(event) => {
-                handleClick(event);
-                setOpenedLabel(labelID);
-              }}
-              onDelete={() => removeLabelFromCard(labelID)}
-            />
-            <EditLabel
-              card={card}
-              labelID={openedLabel}
-              labels={labels}
-              open={open}
-              anchorEl={anchorEl}
-              handleClose={handleClose}
-            />
-          </Box>
-        ))}
+        {cards[card._id].labels.map(
+          (labelID) =>
+            typeof labels[labelID] !== "undefined" && (
+              <Box key={labelID}>
+                <Chip
+                  sx={{
+                    bgcolor: labels[labelID].color,
+                    color: "white",
+                    fontWeight: "bold",
+                    opacity: 1,
+                    transition: "0.3s",
+                    ":hover": {
+                      bgcolor: labels[labelID].color,
+                      opacity: 0.8,
+                    },
+                  }}
+                  label={labels[labelID].label}
+                  size="small"
+                  onClick={(event) => {
+                    handleClick(event);
+                    setOpenedLabel(labelID);
+                  }}
+                  onDelete={() => removeLabelFromCard(labelID)}
+                />
+                <EditLabel
+                  card={card}
+                  labelID={openedLabel}
+                  labels={labels}
+                  open={open}
+                  anchorEl={anchorEl}
+                  handleClose={handleClose}
+                />{" "}
+              </Box>
+            )
+        )}
       </Stack>
     )
   );
